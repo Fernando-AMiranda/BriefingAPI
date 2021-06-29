@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+<meta charset="UTF-8">
+<title>Briefing</title>
+</head>
+<body>
+	<h1>Briefing</h1>
+	<h3>Gerenciador de Cartórios</h3>
+
+	<button>
+		<a href="/create">Cadastrar Cartório</a>
+	</button>
+
+	<table borde="1">
+		<tr>
+			<td>Nome</td>
+			<td>CEP</td>
+			<td>Logradouro</td>
+			<td>Número</td>
+			<td>Bairro</td>
+			<td>Cidade</td>
+			<td>UF</td>
+			<td>Opções</td>
+		</tr>
+		
+		<tr th:each="cartorio : ${cartorios}">
+			<td th:text="${cartorio.nome}"></td>
+			<td th:text="${cartorio.cep}"></td>
+			<td th:text="${cartorio.logradouro}"></td>
+			<td th:text="${cartorio.numero}"></td>
+			<td th:text="${cartorio.bairro}"></td>
+			<td th:text="${cartorio.localidade}"></td>
+			<td th:text="${cartorio.uf}"></td>
+			<td>
+				<a  th:href="@{get/{id}(id=${cartorio.cartorioId})}"><i class="material-icons left">edit</i></a>
+				<a  th:href="@{delete/{id}(id=${cartorio.cartorioId})}"><i class="material-icons left">delete</i></a>
+			</td>
+
+		</tr>
+
+	</table>
+</body>
+</html>

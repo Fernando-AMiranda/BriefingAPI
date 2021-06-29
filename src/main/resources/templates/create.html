@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>Cadastro de Cartório</title>
+</head>
+<body>
+
+	<h3 th:if="${cartorio.cartorioId}">Editar Cartório</h3>
+	<h3 th:unless="${cartorio.cartorioId}">Cadastrar Cartório</h3>
+
+	<form action="/cep" th:object="${cartorio}">
+		<table>
+			<tr>
+				<td><label for="cep">CEP:</label></td>
+				<td><input th:field="*{cep}" type="text" id="cep" name="cep" />
+				<button type="submit">BUSCAR</button></td>
+			</tr>
+		</table>
+
+	</form>
+
+	<form action="/save" method="post" th:object="${cartorio}">
+		<table>
+			<tr>
+				<td><input th:field="*{cartorioId}" type="hidden"
+					id="candidatoId" name="candidatoId" /></td>
+			</tr>
+			<tr>
+				<td><label for="nome">Nome:</label></td>
+				<td><input th:field="*{nome}" type="text" id="nome" name="nome" /></td>
+			</tr>
+
+			<tr>
+				<td><label for="endereco">Logradouro:</label></td>
+				<td><input th:field="*{logradouro}" type="text" id="logradouro"
+					name="logradouro" /></td>
+			</tr>
+			<tr>
+				<td><label for="numero">Número:</label></td>
+				<td><input th:field="*{numero}" type="text" id="numero"
+					name="numero" /></td>
+			</tr>
+			<tr>
+				<td><label for="bairro">Bairro:</label></td>
+				<td><input th:field="*{bairro}" type="text" id="bairro"
+					name="bairro" /></td>
+			</tr>
+			<tr>
+				<td><label for="localidade">Cidade:</label></td>
+				<td><input th:field="*{localidade}" type="text" id="localidade"
+					name="localidade" /></td>
+			</tr>
+			<tr>
+				<td><label for="uf">UF:</label></td>
+				<td><input th:field="*{uf}" type="text" id="uf" name="uf" /></td>
+			</tr>
+			<tr>
+				<td><input th:field="*{cep}" type="hidden" id="cep" name="cep" />
+			</tr>
+
+			<tr>
+				<td><label for="cartorios">Certidões Emitidas:</label></td>
+				<td>
+					<div class="input-field col s12">
+						<select id="cartorios" name="cartorios" th:field="*{certidoes}">
+							<option th:each="certidao : ${certidoes}"
+								th:value="${{certidao}}" th:text="${certidao}"></option>
+							<label>Materialize Select</label>
+						</select>
+					</div>
+				<td />
+			</tr>
+			<tr>
+				<td>
+					<button type="submit">SALVAR</button>
+				</td>
+				<td>
+					<button>
+						<a href="/">VOLTAR</a>
+					</button>
+				</td>
+			</tr>
+
+		</table>
+	</form>
+
+</body>
+</html>
